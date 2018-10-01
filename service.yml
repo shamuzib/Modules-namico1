@@ -1,0 +1,20 @@
+--- #Service Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Installing httpd on Debian
+    yum: pkg=httpd state=installed
+    when: ansible_os_family == 'RedHat'
+    notify: start HTTPD
+  - name: Installing apached2 on Debian
+    apt: pkg=apache2 state=installed
+    when: ansible_os_family == 'Debian'
+    notify: start APACHE2
+  handlers: 
+  - name: start APACHE2
+    service: name=apache2 state=started 
+  - name: start HTTPD
+    service: name=httpd state=started

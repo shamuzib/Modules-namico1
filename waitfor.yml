@@ -1,0 +1,23 @@
+--- #Waitfor Module
+- hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  remote_user: test
+  tasks:
+  - name: Install tomcat and wait till port 8080 is opened
+    yum: pkg=tomcat state=installed
+    when: ansible_os_family == 'RedHat'    
+  - name: Waiting for port 8080 to start
+    wait_for: 
+     port: 8080  
+     state: started
+  - name: Install tomcat and wait till port 8080 is opened
+    apt: pkg=tomcat9 state=installed
+    when: ansible_os_family == 'Debian'
+    ignore_errors: yes
+  - name: Waiting for port 8080 to start
+    wait_for:
+     port: 8080
+     state: started
+    ignore_errors: yes

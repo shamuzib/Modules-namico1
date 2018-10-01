@@ -1,0 +1,15 @@
+--- #AT Module
+- hosts: all
+  become: yes
+  remote_user: test
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: Installing AT RedHat
+    yum: pkg=at state=installed
+    when: ansible_os_family == 'RedHat'
+  - name: Installing AT Debian
+    apt: pkg=at state=installed
+    when: ansible_os_family == 'Debian'
+  - name: Scheduling a job using AT
+    at: command="ls -al > /home/test/at1.log" count=1 units="minutes"

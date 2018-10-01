@@ -1,0 +1,11 @@
+--- #ACL Mdule
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: get ACL info on a remote file
+    acl: name=/etc/shadow
+    register: log
+  - debug: var=log

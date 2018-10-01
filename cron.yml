@@ -1,0 +1,9 @@
+--- #CRON Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: CRON Module
+    cron: name="List Files" minute="0" hour="1" day="7" month="9" job="ls -al >> cron.log"

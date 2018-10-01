@@ -1,0 +1,8 @@
+--- #SEBOOL Module
+- hosts: RedHat
+  remote_user: test
+  become: yes
+  connection: ssh
+  tasks:
+  - name: Setting up httpd_anon_write Value using SEBOOL
+    seboolean: name=httpd_anon_write state=yes persistent=yes

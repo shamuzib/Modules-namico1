@@ -1,0 +1,9 @@
+--- #SETUP Modules
+- hosts: RedHat
+  user: test
+  connection: ssh
+  sudo: yes
+  gather_facts: no
+  tasks:
+  - name: setup module example
+    setup: filter='*ipv4*'

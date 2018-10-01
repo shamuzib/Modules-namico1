@@ -1,0 +1,9 @@
+--- #FETCH Module
+- hosts: all
+  gather_facts: yes
+  remote_user: test
+  become: test
+  connection: ssh
+  tasks:
+  - name: Fecting a file
+    fetch: src=/home/test/debug.log dest=/home/test/prefix-{{ ansible_hostname }} flat=yes

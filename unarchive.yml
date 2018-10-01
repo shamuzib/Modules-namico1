@@ -1,0 +1,9 @@
+--- #UNARCHIVE Module
+- hosts: local
+  remote_user: test
+  become: yes
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: Unarchive wordpress-4.9.8.zip
+    unarchive: src=/home/test/Modules/word.tar.gz dest=/home/test/Modules copy=no

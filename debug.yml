@@ -1,0 +1,11 @@
+--- #DEBUG Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Listing files in a directory
+    shell: /bin/uptime > /home/test/debug.log
+    register: log
+  - debug: var=log

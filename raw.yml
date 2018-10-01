@@ -1,0 +1,11 @@
+--- #RAW Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Viewing uptime log
+    raw: /usr/bin/uptime
+    register: log
+  - debug: var=log

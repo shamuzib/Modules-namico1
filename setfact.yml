@@ -1,0 +1,11 @@
+--- #SETFACT Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: SetFact Module which i have no idea of.
+    set_fact:
+     singlefact: SOMETHING
+  - debug: msg={{ singlefact }}

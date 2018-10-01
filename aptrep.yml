@@ -1,0 +1,13 @@
+--- #APT_REPO and APT_KEY
+- hosts: Debian
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Install python-apt
+    apt: pkg=python-apt state=installed
+  - name: Adding Keys
+    apt_key: url=https://dl.google.com/linux/linux_signing_key.pub state=present
+  - name: Adding repository
+    apt_repository: repo='deb http://dl.google.com/linux/deb/ stable main non-free' state=present

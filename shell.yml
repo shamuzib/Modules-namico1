@@ -1,0 +1,9 @@
+--- #SHELL Module
+- hosts: all
+  connection: ssh
+  gather_facts: no
+  become: yes
+  remote_user: test
+  tasks:
+  - name: Shell Module
+    shell: /usr/bin/uptime >> /var/log/uptime.log

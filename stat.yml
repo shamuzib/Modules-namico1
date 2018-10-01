@@ -1,0 +1,11 @@
+--- #STAT Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: STAT Module detals of a file
+    stat: path=/home/test/hello.py
+    register: log
+  - debug: var=log

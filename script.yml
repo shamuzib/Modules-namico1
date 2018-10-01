@@ -1,0 +1,8 @@
+--- #SCRIPT Module
+- hosts: all
+  remote_user: test
+  gather_facts: no
+  connection: ssh
+  become: yes
+  tasks:
+  - script: /home/test/Modules/script.sh >> uptime.log

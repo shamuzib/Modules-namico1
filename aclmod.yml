@@ -1,0 +1,11 @@
+--- #ACL Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: file details
+    acl: name=/home/test/dir.list
+    register: aclinfo
+  - debug: var=aclinfo

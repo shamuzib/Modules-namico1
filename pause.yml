@@ -1,0 +1,24 @@
+--- #Remove All
+- hosts: all
+  remote_user: test
+  become: yes
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: remove all RedHat
+    yum: name={{ item }} state=removed
+    with_items:
+    - httpd
+    - telnet
+    - lynx
+    when: ansible_os_family == 'RedHat'
+  - name: Pausing
+    pause:
+     seconds: 5
+  - name: Remove all Debian
+    apt: name={{ item }} state=removed
+    with_items:
+    - apache2
+    - lynx
+    - telnet
+    when: ansible_os_family == 'Debian'

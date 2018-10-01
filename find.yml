@@ -1,0 +1,11 @@
+--- #FIND Module
+- hosts: all
+  become: yes
+  remote_user: test
+  gather_facts: no
+  connection: ssh
+  tasks:
+  - name: Find Module usage
+    find: path="/var/log" age="1d" recurse="yes" size="100k" pattern="*.log"
+    register: log
+  - debug: var=log

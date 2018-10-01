@@ -1,0 +1,15 @@
+--- #SELINUX Module
+- hosts: all
+  remote_user: test
+  become: yes
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: Install python-apt on Debian systems
+    apt: pkg=python-apt state=installed
+    when: ansible_os_family == 'Debian'
+  - name: Install selinux on Debian systems
+    apt: pkg=policycoreutils state=installed
+    when: ansible_os_family == 'Debian'
+  - name: changing SELINUX values
+    selinux: state=permissive policy=targeted

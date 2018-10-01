@@ -1,0 +1,19 @@
+--- #DNF Module
+- hosts: all
+  remote_user: test
+  become: yes
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: Installing epel-release using yum module
+    yum: pkg=epel-release state=installed
+    when: ansible_os_family == 'RedHat'
+  - name: Installing DNF using yum module
+    yum: pkg=DNF state=installed
+    when: ansible_os_family == 'RedHat'
+  - name: Installing YUM on Debian
+    apt: pkg=yum state=installed
+    when: ansible_os_family == 'Debian'
+  - name: Install Development tools
+    dnf: name="@Development tools" state=latest
+    when: ansible_os_family == 'RedHat'

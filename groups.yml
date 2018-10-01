@@ -1,0 +1,9 @@
+--- #GROUP Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Adding groups
+    group: name=grouping state=present gid=1010 system=no

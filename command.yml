@@ -1,0 +1,13 @@
+--- #Command Module
+- hosts: all
+  remote_user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: copying a file to remote dest
+    copy: src=/home/test/hello.py dest=/home/test/hello.py owner=test group=test mode=777 backup=yes
+  - name: running a python script using command module
+    command: /home/test/hello.py
+    register: log
+  - debug: var=log

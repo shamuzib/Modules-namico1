@@ -1,0 +1,9 @@
+--- #GETURL Module
+- hosts: all
+  remote_user: test
+  become: yes
+  gather_facts: no
+  connection: ssh
+  tasks:
+  - name: getting agoogle key file
+    get_url: url=https://dl.google.com/linux/linux_signing_key.pub dest=/home/test/key.pub mode=777

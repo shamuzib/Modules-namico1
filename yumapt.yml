@@ -1,0 +1,13 @@
+--- #Update all packages using yum and apt
+- hosts: all
+  remote_user: test
+  become: yes
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: Upgrading RedHat Based systems
+    yum: pkg=* state=latest
+    when: ansible_os_family == 'RedHat'
+  - name: Ugrading Debian Based systems
+    apt: pkg=* state=latest force_apt_get=True
+    when: ansible_os_family == 'Debian'

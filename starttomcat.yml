@@ -1,0 +1,9 @@
+--- #Starting ports for tomcat
+- hosts: RedHat
+  become: yes
+  remote_user: test
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Starting tomcat services
+    service: name=tomcat state=restarted

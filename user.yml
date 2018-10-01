@@ -1,0 +1,12 @@
+--- #USER Module
+- hosts: all
+  connection: ssh
+  gather_facts: yes
+  become: yes
+  remote_user: test
+  tasks:
+  - name: creating users
+    user: name={{ item }} state=present shell=/bin/bash group=wheel
+    with_items:
+    - user1
+    - user2
